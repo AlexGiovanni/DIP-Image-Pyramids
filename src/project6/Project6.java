@@ -1,9 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Alexis Santiago
+ *Project 6: Image Pyramids
+ *
  */
 package project6;
+
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -17,6 +19,18 @@ public class Project6 {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("___________Project06_____________");
+        BufferedImage inImage   = ImageIo.readImage("utb.jpg");
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
 }
