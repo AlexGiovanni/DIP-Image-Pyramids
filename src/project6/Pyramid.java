@@ -43,22 +43,27 @@ public class Pyramid {
     */
     public byte[][] pRecurse(byte[][]input, byte[][]output, int levels, int counter, int index[]) {
     System.out.println("c: "+index[0]+" r: "+index[1]);
-        //Base case: add original image
+        //Base case: no more levels
+        if (levels <= 0 ){
+            return output;
+        }
+        //case: first level
         if (levels > 0 && counter == 0){
           //copy the original image to pyramids image
           index = addImage( input, output, index ).clone();
           levels--;
           counter++;
+         return pRecurse(input, output, levels, counter,index );
         }
-        else if(levels > 0 && counter == 1){//maybe >=0
+        else {
             //zoom out
             byte[][] zoomedInput = zoomOut(input);
             index = addImage( zoomedInput, output, index ).clone();
             levels--;
             counter++;
+            return pRecurse(input, output, levels, counter,index );
         }
         
-        return output;
     }
     
     /*

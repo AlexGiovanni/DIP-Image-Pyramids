@@ -33,7 +33,7 @@ public class Project6 {
         int [] index = {0,0};
        
         System.out.println("main___c: "+index[0]+" r: "+index[1]);
-        pyramidObj.pRecurse(grayInput, pyramidOutput, 4, 0,index );
+        pyramidObj.pRecurse(grayInput, pyramidOutput, 2, 0,index );
        
         // Output pyramid image
         BufferedImage pyramid = ImageIo.setGrayByteImageArray2DToBufferedImage(pyramidOutput);
