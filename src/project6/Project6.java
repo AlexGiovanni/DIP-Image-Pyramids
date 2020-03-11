@@ -26,15 +26,19 @@ public class Project6 {
         //get image values as array
         byte[][] grayInput  = ImageIo.getGrayByteImageArray2DFromBufferedImage(grayImage);
         //create array to store zoomOut image values 
-        byte[][] zoomOut  = new byte[(grayInput.length)*2][(grayInput[0].length)*2];
+        byte[][] pyramidOutput  = new byte[(grayInput.length)*2][(grayInput[0].length)*2];
         
         Pyramid pyramidObj = new Pyramid();
         
-        byte[][] zOut = pyramidObj.zoomOut(grayInput);
+        byte[][] zOut = pyramidObj.zoomOut(grayInput, pyramidOutput, 1);
         
         // Output Zoomed out image
         BufferedImage zoomO = ImageIo.setGrayByteImageArray2DToBufferedImage(zOut);
         ImageIo.writeImage(zoomO, "jpg", "ZoomedOut.jpg"); 
+        
+        // Output pyramid image
+        BufferedImage pyramid = ImageIo.setGrayByteImageArray2DToBufferedImage(pyramidOutput);
+        ImageIo.writeImage(pyramid, "jpg", "pyramid.jpg"); 
         
         
         

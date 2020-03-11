@@ -17,7 +17,7 @@ import javax.imageio.ImageIO;
 public class Pyramid {
     
     //create the zoomed out image
-    public byte[][] zoomOut(byte[][]input) {
+    public byte[][] zoomOut(byte[][]input, byte[][]pyramidImage, int levels ) {
 
         // Gradient
        byte[][] output= new byte[(input.length)/2][(input[0].length)/2];
@@ -27,17 +27,28 @@ public class Pyramid {
             for (int c = 1; c < output[0].length - 1; c++) 
             {
                
-                       
+               //zoom out calculations        
                output[r][c]= (byte) ImageIo.clip((input[2*r][2*c] & 0xff +
                                                  input[2*r+1][2*c] & 0xff +
                                                  input[2*r][2*c+1] & 0xff +
                                                  input[2*r+1][2*c+1] & 0xff)/4.0f);
+               
+               //add values to pyramid image
+               if(levels == 1){
+                    pyramidImage[r][c] = output[r][c];
+               }
+               else if(levels == 2){
+                   
+               }
+              
                 
             }
         }
         return output;
     } 
     
+    
+     //handle border function
      public void handleBorder(byte[][] input, byte[][]output, int hmask, int vmask) {
         int h = input.length;
         int w = input[0].length;
@@ -69,23 +80,3 @@ public class Pyramid {
     
 }
 
-/*
- //create the zoomed out image
-    public byte[][] zoomOut(byte[][]input) {
-
-        // Gradient
-       byte[][] output= new byte[(input.length)/2][(input[0].length)/2];
-      
-        for (int r = 0; r < output.length - 1; r++) 
-        {
-            for (int c = 1; c < output[0].length - 1; c++) 
-            {
-               float sum = input[][]
-                       
-               output[r][c] = (byte) input[][] & 0xff;
-                
-            }
-        }
-        return output;
-    } 
-*/
