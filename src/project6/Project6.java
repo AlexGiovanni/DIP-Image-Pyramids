@@ -29,18 +29,17 @@ public class Project6 {
         byte[][] pyramidOutput  = new byte[(grayInput.length)*2][(grayInput[0].length)*2];
         
         Pyramid pyramidObj = new Pyramid();
-        
-        byte[][] zOut = pyramidObj.zoomOut(grayInput, pyramidOutput, 1);
-        
-        // Output Zoomed out image
-        BufferedImage zoomO = ImageIo.setGrayByteImageArray2DToBufferedImage(zOut);
-        ImageIo.writeImage(zoomO, "jpg", "ZoomedOut.jpg"); 
-        
+        //create and set starting index
+        int [] index = {0,0};
+       
+        System.out.println("main___c: "+index[0]+" r: "+index[1]);
+        pyramidObj.pRecurse(grayInput, pyramidOutput, 4, 0,index );
+       
         // Output pyramid image
         BufferedImage pyramid = ImageIo.setGrayByteImageArray2DToBufferedImage(pyramidOutput);
         ImageIo.writeImage(pyramid, "jpg", "pyramid.jpg"); 
         
-        
+     
         
         
         
