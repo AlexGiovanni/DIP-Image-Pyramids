@@ -27,13 +27,19 @@ public class Project6 {
         byte[][] grayInput  = ImageIo.getGrayByteImageArray2DFromBufferedImage(grayImage);
         //create array to store zoomOut image values 
         byte[][] pyramidOutput  = new byte[(grayInput.length)*2][(grayInput[0].length)*2];
+        //set background to white
+         for (int r = 0; r < pyramidOutput.length - 1; r++)  {
+            for (int c = 1; c < pyramidOutput[0].length - 1; c++) {
+                 pyramidOutput[r][c]= (byte)  255;
+            }
+         }
         
         Pyramid pyramidObj = new Pyramid();
         //create and set starting index
         int [] index = {0,0};
        
         System.out.println("main___c: "+index[0]+" r: "+index[1]);
-        pyramidObj.pRecurse(grayInput, pyramidOutput, 2, 0,index );
+        pyramidObj.pRecurse(grayInput, pyramidOutput, 7, 0,index );
        
         // Output pyramid image
         BufferedImage pyramid = ImageIo.setGrayByteImageArray2DToBufferedImage(pyramidOutput);

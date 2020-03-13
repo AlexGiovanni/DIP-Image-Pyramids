@@ -10,7 +10,7 @@ package project6;
  * @author alexi
  */
 public class Pyramid {
-    
+    byte[][] zoomedInput;
     /*create the zoomed out image
     *takes an image and creates a zoomed out image by
     *taking the average of 4 pixels
@@ -53,15 +53,23 @@ public class Pyramid {
           index = addImage( input, output, index ).clone();
           levels--;
           counter++;
-         return pRecurse(input, output, levels, counter,index );
+         return pRecurse(input, output, levels, counter, index );
         }
-        else {
+        else if(counter == 1){
             //zoom out
-            byte[][] zoomedInput = zoomOut(input);
+            zoomedInput = zoomOut(input);
             index = addImage( zoomedInput, output, index ).clone();
             levels--;
             counter++;
-            return pRecurse(input, output, levels, counter,index );
+            return pRecurse(input, output, levels, counter, index );
+        }
+        else{
+             //zoom out
+            zoomedInput = zoomOut(zoomedInput);//pass in zoomed image
+            index = addImage( zoomedInput, output, index ).clone();
+            levels--;
+            counter++;
+            return pRecurse(input, output, levels, counter, index );
         }
         
     }
@@ -78,8 +86,8 @@ public class Pyramid {
             }
         }
         
-        index[0]= input.length - 1;//row index
-        index[1]= input[0].length - 1;//colum index
+        index[0]+= input.length - 1;//row index
+        index[1]+= input[0].length - 1;//colum index
         return index;
     }
     
